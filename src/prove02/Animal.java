@@ -58,18 +58,18 @@ public class Animal extends Creature implements Movable, Aggressor {
 	public void move() {
 		
 		// Choose a random direction each time move() is called.
-		switch(_rand.nextInt(4)) {
-			case 0:
-				_location.x++;
+    switch (Direction.fromInt(_rand.nextInt(4))) {
+      case RIGHT:
+        _location.x++;
 				break;
-			case 1:
-				_location.x--;
+      case LEFT:
+        _location.x--;
 				break;
-			case 2:
-				_location.y++;
+      case ABOVE:
+        _location.y++;
 				break;
-			case 3:
-				_location.y--;
+      case BELOW:
+        _location.y--;
 				break;
 			default:
 				break;
