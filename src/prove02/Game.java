@@ -7,9 +7,9 @@ import java.util.List;
 * The starting class of the game. This class initializes the game world and all
 * of thre creatures within it.
 * <p>
-* @author  Brother Falin
-* @version 1.0
-* @since   2016-12-08 
+ * @author Brother Falin & Matt Burr
+ * @version 2.0
+ * @since 2017-04-26
 * @see Creature
 */
 public class Game {
@@ -29,7 +29,13 @@ public class Game {
 			Plant p = new Plant();
 			creatures.add(p);
 		}
-		
+
+		// Add some Zombie-eating plants to the world
+		for (int i = 0; i < 25; i++) {
+			ZombieEatingPlant zPlant = new ZombieEatingPlant();
+			creatures.add(zPlant);
+		}
+
 		// Add some animals to the world
 		for(int i = 0; i < 25; i++) {
 			Animal a = new Animal();
