@@ -11,9 +11,10 @@ import java.util.Random;
  * @version 1.0
  * @since 2017-04-22
  */
-public class Wolf extends Creature implements Movable, Aware, Aggressor {
+public class Wolf extends Creature implements Movable, Aware, Aggressor, Spawner {
 
   private Direction _preferredDirection;
+  private Boolean _canSpawn = false;
 
   /**
    * Creates a new Wolf that will move in a random preferred direction
@@ -64,6 +65,7 @@ public class Wolf extends Creature implements Movable, Aware, Aggressor {
     }
 
     target.takeDamage(5);
+    _canSpawn = true;
   }
 
   /**
@@ -123,9 +125,7 @@ public class Wolf extends Creature implements Movable, Aware, Aggressor {
     }
     // If there are no animals nearby, we just keep going
     // in our current direction.
-    else {
-      ;
-    }
+ 
   }
 
   @Override
@@ -141,5 +141,22 @@ public class Wolf extends Creature implements Movable, Aware, Aggressor {
   @Override
   Boolean isAlive() {
     return _health > 0;
+  }
+
+  /***
+   * If the Wolf has recently eaten, spawns a new Wolf.
+   * @return a new Wolf
+   */
+  @Override
+  public Creature spawnNewCreature() {
+    // If we can spawn, do so, but just this once
+    if (_canSpawn) {
+      _canSpawn = false;
+      return new Wolf();
+    }
+
+    // If we reach this point, we can't spawn, so we just return null
+
+    return null;
   }
 }
