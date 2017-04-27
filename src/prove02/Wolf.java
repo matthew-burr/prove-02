@@ -8,13 +8,13 @@ import java.util.Random;
  * <p />
  *
  * @author Matthew Burr
- * @version 1.0
- * @since 2017-04-22
+ * @version 2.0
+ * @since 2017-04-26
  */
 public class Wolf extends Creature implements Movable, Aware, Aggressor, Spawner {
 
   private Direction _preferredDirection;
-  private Boolean _canSpawn = false;
+  private Boolean _canSpawn;
 
   /**
    * Creates a new Wolf that will move in a random preferred direction
@@ -22,6 +22,7 @@ public class Wolf extends Creature implements Movable, Aware, Aggressor, Spawner
   public Wolf() {
     _preferredDirection = Direction.fromInt(new Random().nextInt(4));
     _health = 1;
+    _canSpawn = false;
   }
 
   /**
@@ -65,6 +66,7 @@ public class Wolf extends Creature implements Movable, Aware, Aggressor, Spawner
     }
 
     target.takeDamage(5);
+    _health++;
     _canSpawn = true;
   }
 

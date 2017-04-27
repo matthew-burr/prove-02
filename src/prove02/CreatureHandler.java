@@ -8,9 +8,9 @@ import java.util.Random;
 /**
 * The "brains" of the game, which controls all of the creature activites.
 * <p>
-* @author  Brother Falin
-* @version 1.0
-* @since   2016-12-08 
+ * @author Brother Falin & Matt Burr
+ * @version 2.0
+ * @since 2017-04-26
 * @see Creature
 */
 public class CreatureHandler
