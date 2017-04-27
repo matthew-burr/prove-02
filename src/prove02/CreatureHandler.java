@@ -1,8 +1,9 @@
 package prove02;
 
-import java.util.Random;
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
 * The "brains" of the game, which controls all of the creature activites.
@@ -116,6 +117,11 @@ public class CreatureHandler
 	*/
 	public void updateCreatures() {
 
+    // It's possible that we may spawn some children as we update the creatures.
+    // We need a temporary holding place for them until we're done looping through
+    // the current creatures; then we'll add them to our main list
+    List<Creature> children = new ArrayList<>();
+
 		// Handle all our creature behaviors here. Since we don't know ahead of time
 		// which creatures implement which behaviors, we can use the instanceof keyword
 		// to see if a given instance implements a particular interface.
@@ -144,7 +150,22 @@ public class CreatureHandler
 					Aggressor a = (Aggressor)c;
 					a.attack(target);
 				}
-				
-			}
-	}
+
+      if (c instanceof Spawner) {
+        Spawner s = (Spawner) c;
+
+        Creature child = s.spawnNewCreature();
+        if (null == child) {
+          continue;
+        }
+
+        child.setLocation(getRandomLocation());
+
+        children.add(child);
+      }
+    }
+
+    // And now we add children onto the existing list of creatures
+    _creatures.addAll(children);
+  }
 }
