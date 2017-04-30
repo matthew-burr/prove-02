@@ -159,8 +159,6 @@ public class CreatureHandler
           continue;
         }
 
-        child.setLocation(getRandomLocation());
-
         children.add(child);
       }
     }

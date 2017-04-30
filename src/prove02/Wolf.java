@@ -1,6 +1,7 @@
 package prove02;
 
 import java.awt.Color;
+import java.awt.Point;
 import java.util.Random;
 
 /**
@@ -154,7 +155,11 @@ public class Wolf extends Creature implements Movable, Aware, Aggressor, Spawner
     // If we can spawn, do so, but just this once
     if (_canSpawn) {
       _canSpawn = false;
-      return new Wolf();
+      Wolf child = new Wolf();
+      child.setLocation((Point) _location.clone());
+      ;
+      child._location.x--;
+      return child;
     }
 
     // If we reach this point, we can't spawn, so we just return null
